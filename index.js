@@ -38,6 +38,7 @@ function sliderMove(evt) {
    });
 }
 
+
 //Assign each slider events to listen
 slider.forEach((item) => {
    item.addEventListener("mousemove", sliderMove);
@@ -106,5 +107,18 @@ function showVisionTest(button, visionTest, index) {
          visionTest[index].classList.toggle("current");
          button.classList.toggle("active");
       }
+      sliderReset();
    });
 }
+
+//Reset the wrapper img and handle back in the middle
+function sliderReset() {
+   sliderImgWrapper.forEach((item) => {
+      item.style.width = "50%";
+   });
+
+   sliderHandle.forEach((item) => {
+      item.style.left = "calc(50% - 50px / 2)";
+   });
+}
+
