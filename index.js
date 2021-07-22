@@ -1,5 +1,4 @@
 //Needs preloader for imgs
-
 const slider = document.querySelectorAll(".image-comparison-slider");
 const sliderImgWrapper = document.querySelectorAll(".image-comparison-slider .img-wrapper");
 const sliderHandle = document.querySelectorAll(".image-comparison-slider .handle");
@@ -45,10 +44,6 @@ slider.forEach((item) => {
    item.addEventListener("mousedown", mouseDown);
    item.addEventListener("mouseup", mouseUp);
    item.addEventListener("mouseleave", mouseLeave);
-   //For touch screen
-   item.addEventListener("touchmove", sliderMove);
-   item.addEventListener("touchstart", mouseDown);
-   item.addEventListener("touchend", mouseLeave);
 });
 
 //Locking of slider function
@@ -62,7 +57,7 @@ function mouseUp() {
 }
 
 function mouseLeave() {
-   if (!isSliderLocked) isSliderLocked = true; //lock slied if the mouse leaves the image area
+   if (!isSliderLocked) isSliderLocked = true; //lock slider if the mouse leaves the image area
 }
 
 //Log On²
@@ -97,16 +92,14 @@ function showVisionTest(button, visionTest, index) {
          }
       });
 
-      if (evt.target === button) {
-         if (button.classList.contains("active")) {
-            //If the button clicked has the "active" class
-            visionTest[0].classList.toggle("current"); //Display the normal visionTest
-            visionTest[index].classList.toggle("current"); //Toggle off the current visionTest
-         }
-         // Toggle on selected visiontest and button
-         visionTest[index].classList.toggle("current");
-         button.classList.toggle("active");
+      if (button.classList.contains("active")) {
+         //If the button clicked has the "active" class
+         visionTest[0].classList.toggle("current"); //Display the normal visionTest
+         visionTest[index].classList.toggle("current"); //Toggle off the current visionTest
       }
+      // Toggle on selected visiontest and button
+      visionTest[index].classList.toggle("current");
+      button.classList.toggle("active");
       sliderReset();
    });
 }
@@ -121,4 +114,3 @@ function sliderReset() {
       item.style.left = "calc(50% - 50px / 2)";
    });
 }
-
