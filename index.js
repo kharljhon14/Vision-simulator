@@ -1,3 +1,5 @@
+//Needs preloader for imgs
+
 const slider = document.querySelectorAll(".image-comparison-slider");
 const sliderImgWrapper = document.querySelectorAll(".image-comparison-slider .img-wrapper");
 const sliderHandle = document.querySelectorAll(".image-comparison-slider .handle");
