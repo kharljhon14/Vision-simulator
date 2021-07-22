@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap");
 /* Common Style */
 * {
    margin: 0;
@@ -5,6 +6,7 @@
    box-sizing: border-box;
    text-decoration: none;
    outline: none;
+   font-family: "Montserrat", sans-serif;
 }
 
 html {
@@ -12,18 +14,29 @@ html {
 }
 
 body {
-   font-family: Helvetica, sans-serif;
    width: 100%;
    min-height: 100vh;
    display: flex;
    align-items: center;
    justify-content: center;
+   background-color: #f1faee;
+}
+
+.section-heading {
+   font-size: 2rem;
+   font-weight: 300;
+   text-align: center;
+   color: #1d3557;
+}
+
+.section-heading span {
+   font-weight: 500;
 }
 
 /* Vision Navigation */
 .vision-test-container {
    width: 80%;
-   height: 100vh;
+   min-height: 100vh;
    display: flex;
    flex-direction: column;
    align-items: center;
@@ -39,22 +52,19 @@ body {
 
 .vision-btn {
    cursor: pointer;
-   border: 2px solid #000;
+   border: 2px solid #e63946;
    text-align: center;
    width: 80%;
    font-size: 1rem;
    margin: 1rem;
    padding: 1rem;
+   border-radius: 1rem;
    transition: background-color 0.3s, color 0.3s;
+   color: #1d3557;
 }
 
 .vision-btn:hover {
-   background-color: #000;
-   color: #fff;
-}
-
-.vision-btn:target {
-   background-color: #000;
+   background-color: #e63946;
    color: #fff;
 }
 
@@ -70,14 +80,13 @@ body {
    pointer-events: none;
 }
 
-.vision-btn.active {
-   background-color: #000;
-   color: #fff;
+.active {
+   background-color: #e63946;
 }
 
-.vision-btn.active:hover {
+.active:hover {
    background-color: #fff;
-   color: #000;
+   color: #457b9d;
 }
 
 /* Image Comparison */
@@ -85,7 +94,8 @@ body {
    position: relative;
    width: 50vw;
    overflow: hidden;
-   border-radius: 0.5rem;
+   border-bottom-left-radius: .5rem;
+   border-bottom-right-radius: .5rem;
    cursor: col-resize;
 }
 
@@ -118,14 +128,14 @@ body {
 
 .image-comparison-slider .label {
    position: absolute;
-   top: 1rem;
+   bottom: 1rem;
    z-index: 3;
    color: #fff;
-   background-color: #513b41;
+   background-color: #457b9d;
    padding: 0.5rem 0.75rem;
    font-size: 1rem;
    text-align: center;
-   letter-spacing: 0.4rem;
+   letter-spacing: 0.2rem;
    user-select: none;
    opacity: 1;
 }
@@ -136,7 +146,7 @@ body {
 
 .image-comparison-slider .label.label-after {
    right: 1rem;
-   background-color: #d62828;
+   background-color: #e63946;
 }
 
 .image-comparison-slider .handle {
@@ -156,18 +166,22 @@ body {
 .image-comparison-slider .handle-line {
    width: 2px;
    flex-grow: 1;
-   background-color: #d62828;
+   background-color: #f1faee;
 }
 
 .image-comparison-slider .handle-circle {
    width: 50px;
    height: 50px;
-   color: #d62828;
-   border: 2px solid #d62828;
+   color: #f1faee;
+   border: 2px solid #f1faee;
    border-radius: 50%;
    display: flex;
    align-items: center;
    justify-content: space-evenly;
+}
+
+.image-comparison-slider .handle-circle i {
+   color: #000;
 }
 
 .vision-test {
@@ -176,24 +190,78 @@ body {
    transition: opacity 0.3s 1s;
 }
 
+.description {
+   width: 100%;
+   text-align: center;
+   background-color: #1d3557;
+   color: #f1faee;
+   border-top-left-radius: .5rem;
+   border-top-right-radius: .5rem;
+}
+
+.vision-title {
+   font-size: 5rem;
+}
+
+.description p {
+   font-size: 2rem;
+}
+
 .current {
-   display: inline-block;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
    opacity: 1;
    transition: opacity 0.3s 1s;
 }
 
-@media (max-width: 700px) {
-   html {
-      font-size: 50%;
+@media (max-width: 1450px) {
+   .section-heading {
+      margin: 1rem 0;
    }
+   .description {
+      padding: 1rem;
+   }
+   .vision-title {
+      font-size: 3rem;
+   }
+
+   .description p {
+      font-size: 1rem;
+   }
+
+   .image-comparison-slider .label {
+      font-size: 0.8rem;
+   }
+}
+
+@media (max-width: 700px) {
    :root {
       width: 90vw;
    }
+   html {
+      font-size: 50%;
+   }
 
    .vision-test-navigation {
-     flex-direction: column;
+      flex-direction: column;
    }
-   .vision-btn{
-     padding: 2rem;
+
+   .vision-btn {
+      padding: 2rem;
+   }
+}
+
+@media (max-width: 550px) {
+   .vision-title {
+      font-size: 1.5rem;
+   }
+
+   .description p {
+      font-size: 1rem;
+   }
+
+   .image-comparison-slider .label {
+      display: none;
    }
 }

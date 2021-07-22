@@ -4,9 +4,10 @@ const sliderHandle = document.querySelectorAll(".image-comparison-slider .handle
 const visionBtn = document.querySelectorAll(".vision-btn");
 const visionTest = document.querySelectorAll(".vision-test");
 
-function sliderMouseMove(evt) {
-  //Log On² could be refactor to be faster by using frequency counter pattern
-   visionTest.forEach((item, index) => { 
+//Slider move function
+function sliderMove(evt) {
+   //Log On² could be refactor to be faster
+   visionTest.forEach((item, index) => {
       if (item.classList.contains("current")) {
          // Only run if element contains the class current
          if (isSliderLocked) return; // If slider is locked dont update the slider
@@ -24,12 +25,12 @@ function sliderMouseMove(evt) {
 
          sliderImgWrapper.forEach((item) => {
             // Update the width of the image according to the position of the slider
-            item.style.width = `${((1 - mouseX / sliderWidth) * 100)}%`;
+            item.style.width = `${(1 - mouseX / sliderWidth) * 100}%`;
          });
 
          sliderHandle.forEach((item) => {
             // Update slider position according to the position of the mouseX
-            item.style.left = `calc(${((mouseX / sliderWidth) * 100)}% - ${sliderHandleWidth / 2}px)`;
+            item.style.left = `calc(${(mouseX / sliderWidth) * 100}% - ${sliderHandleWidth / 2}px)`;
          });
       }
    });
@@ -37,30 +38,32 @@ function sliderMouseMove(evt) {
 
 //Assign each slider events to listen
 slider.forEach((item) => {
-   item.addEventListener("mousemove", sliderMouseMove);
-   item.addEventListener("mousedown", sliderMouseDown);
-   item.addEventListener("mouseup", sliderMouseUp);
-   item.addEventListener("mouseleave", sliderMouseLeave);
+   item.addEventListener("mousemove", sliderMove);
+   item.addEventListener("mousedown", mouseDown);
+   item.addEventListener("mouseup", mouseUp);
+   item.addEventListener("mouseleave", mouseLeave);
    //For touch screen
-   item.addEventListener("touchmove", sliderMouseMove);
-   item.addEventListener("touchstart", sliderMouseDown);
-   item.addEventListener("touchend", sliderMouseUp);
+   item.addEventListener("touchmove", sliderMove);
+   item.addEventListener("touchstart", mouseDown);
+   item.addEventListener("touchend", mouseLeave);
 });
-let isSliderLocked = true;
 
-function sliderMouseDown() {
+//Locking of slider function
+let isSliderLocked = true;
+function mouseDown() {
    if (isSliderLocked) isSliderLocked = false; //Unlock slider when mouse is pressed
 }
 
-function sliderMouseUp() {
+function mouseUp() {
    if (!isSliderLocked) isSliderLocked = true; //Lock slider when mouse pressed is release
 }
 
-function sliderMouseLeave() {
+function mouseLeave() {
    if (!isSliderLocked) isSliderLocked = true; //lock slied if the mouse leaves the image area
 }
 
 //Log On²
+//Show/hide of vision test and button style
 visionBtn.forEach((item, index) => {
    //This takes the a button, vision test, and the current index
    //This will loop through all the buttons and assign each with the corresponding vision test element
@@ -71,14 +74,22 @@ visionBtn.forEach((item, index) => {
 //Log On
 function showVisionTest(button, visionTest, index) {
    button.addEventListener("click", (evt) => {
+      //---------------------------------------------
+      //NOTES
+      //visionTest and visionBtn can be refactor to not use forEach loop
+      //store the element with the "current" or "active" class to a variable
+      //Then toggle "active" and "current" class when other button is selected
+      //---------------------------------------------
+
       //Reset all visionTest's current class
       visionTest.forEach((item) => {
          item.classList.remove("current");
       });
 
-      //Reset all button style
+      // // //Reset all button style
       visionBtn.forEach((item) => {
          if (button !== item) {
+            //Reset style of the buttons that are not selected
             item.classList.remove("active");
          }
       });
