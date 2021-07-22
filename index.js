@@ -63,18 +63,28 @@ function sliderMouseLeave() {
 
 const visionBtn = document.querySelectorAll(".vision-btn");
 visionBtn.forEach((item, index) => {
-  showVisionTest(item, visionTest, index);
+  showVisionTest(item, visionTest, index + 1);
 });
 
 function showVisionTest(button, visionTest, index) {
   button.addEventListener("click", (evt) => {
-    button.classList.toggle("active");
     visionTest.forEach((item) => {
       item.classList.remove("current");
     });
 
+    visionBtn.forEach((item) => {
+      if (button !== item) {
+        item.classList.remove("active");
+      }
+    });
+
     if (evt.target === button) {
+      if (button.classList.contains("active")) {
+        visionTest[0].classList.toggle("current");
+        visionTest[index].classList.toggle("current");
+      }
       visionTest[index].classList.toggle("current");
+      button.classList.toggle("active");
     }
   });
 }
