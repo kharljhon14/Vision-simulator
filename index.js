@@ -5,6 +5,7 @@ const sliderImgWrapper = document.querySelectorAll(
 const sliderHandle = document.querySelectorAll(
   ".image-comparison-slider .handle"
 );
+const visionBtn = document.querySelectorAll(".vision-btn");
 const visionTest = document.querySelectorAll(".vision-test");
 
 slider.forEach((item) => {
@@ -38,7 +39,7 @@ function sliderMouseMove(evt) {
   });
 }
 
-let isSliderLocked = false;
+let isSliderLocked = true;
 
 slider.forEach((item) => {
   item.addEventListener("mousedown", sliderMouseDown);
@@ -58,10 +59,9 @@ function sliderMouseUp() {
 }
 
 function sliderMouseLeave() {
-  if (isSliderLocked) isSliderLocked = false;
+  if (!isSliderLocked) isSliderLocked = true;
 }
 
-const visionBtn = document.querySelectorAll(".vision-btn");
 visionBtn.forEach((item, index) => {
   showVisionTest(item, visionTest, index + 1);
 });
